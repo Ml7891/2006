@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证</title>
+
+    <style>
+        p { font-size: 50px; }
+        select, input { font-size: 50px; }
+        label { font-size: 50px; }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            max-width: 1000px;
+        }
+        .checkbox-group label {
+            font-size: 36px;
+        }
+    </style>
+    </head>
+    <body>
+
+        <p>因为要确保你是2006班的入，请回答以下问题：</p>
+
+        <input type="number" id="mans" placeholder="1.我们班有几个人？">
+        <br><br><br><br>
+
+        <input type="text" id="luo" placeholder="2.我们班班主任姓什么？">
+        <br><br><br><br>
+
+        <label>我们班</label>
+        <select id="gender">
+            <option value="nan">男生</option>
+            <option value="nv">女生</option>
+            <option value="two">双性人</option>
+        </select>
+        <label>多。</label>
+
+        <br><br><br><br>
+
+        <label>我们班名字不为3个字的有:</label>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" value="1">01</label>
+            <label><input type="checkbox" value="2">02</label>
+            <label><input type="checkbox" value="3">03</label>
+            <label><input type="checkbox" value="5">05</label>
+            <label><input type="checkbox" value="6">06</label>
+            <label><input type="checkbox" value="7">07</label>
+            <label><input type="checkbox" value="8">08</label>
+            <label><input type="checkbox" value="9">09</label>
+            <label><input type="checkbox" value="10">10</label>
+            <label><input type="checkbox" value="11">11</label>
+            <label><input type="checkbox" value="12">12</label>
+            <label><input type="checkbox" value="13">13</label>
+            <label><input type="checkbox" value="14">14</label>
+            <label><input type="checkbox" value="15">15</label>
+            <label><input type="checkbox" value="16">16</label>
+            <label><input type="checkbox" value="17">17</label>
+            <label><input type="checkbox" value="18">18</label>
+            <label><input type="checkbox" value="19">19</label>
+            <label><input type="checkbox" value="20">20</label>
+            <label><input type="checkbox" value="21">21</label>
+            <label><input type="checkbox" value="22">22</label>
+            <label><input type="checkbox" value="23">23</label>
+            <label><input type="checkbox" value="24">24</label>
+            <label><input type="checkbox" value="25">25</label>
+            <label><input type="checkbox" value="26">26</label>
+            <label><input type="checkbox" value="27">27</label>
+            <label><input type="checkbox" value="28">28</label>
+            <label><input type="checkbox" value="29">29</label>
+            <label><input type="checkbox" value="30">30</label>
+            <label><input type="checkbox" value="31">31</label>
+            <label><input type="checkbox" value="32">32</label>
+            <label><input type="checkbox" value="33">33</label>
+            <label><input type="checkbox" value="34">34</label>
+            <label><input type="checkbox" value="35">35</label>
+            <label><input type="checkbox" value="36">36</label>
+            <label><input type="checkbox" value="37">37</label>
+            <label><input type="checkbox" value="38">38</label>
+            <label><input type="checkbox" value="39">39</label>
+            <label><input type="checkbox" value="40">40</label>
+            <label><input type="checkbox" value="41">41</label>
+            <label><input type="checkbox" value="42">42</label>
+            <label><input type="checkbox" value="43">43</label>
+            <label><input type="checkbox" value="44">44</label>
+            <label><input type="checkbox" value="45">45</label>
+            <label><input type="checkbox" value="46">46</label>
+            <label><input type="checkbox" value="47">47</label>
+            <label><input type="checkbox" value="48">48</label>
+            <label><input type="checkbox" value="49">49</label>
+            <label><input type="checkbox" value="50">50</label>
+        </div>
+
+        <br><br>
+        <button onclick="CheckAnswer()" style="font-size:36px; padding:10px 30px;">提交验证</button>
+
+        <script>
+        function CheckAnswer() {
+        const rightmans = 49;
+        const rightluo = "罗";
+        const rightgender = "nv";
+        const rightnames = ["1", "5", "15", "28", "49"];
+
+        const mans = Number(document.getElementById("mans").value);
+        const luo = document.getElementById("luo").value.trim();
+        const gender = document.getElementById("gender").value;
+
+        const names = Array.from(
+            document.querySelectorAll(".checkbox-group input:checked")
+        ).map(v => v.value);
+
+        const wrong =
+            mans !== rightmans ||
+            luo !== rightluo ||
+            gender !== rightgender ||
+            names.length !== rightnames.length ||
+            !rightnames.every(v => names.includes(v));
+
+        if (wrong) {
+            window.location.replace("error.html");
+        } else {
+            localStorage.setItem("pass_2006", "yes");
+            window.location.replace("home.html");
+        }
+        }
+        </script>
+    </body>
+</html>
